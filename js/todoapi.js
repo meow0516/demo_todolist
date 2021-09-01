@@ -1,47 +1,49 @@
 let token = null;
 
-var logininfo = {
-    "url": "https://api-nodejs-todolist.herokuapp.com/user/login",
-    "method": "POST",
-    "timeout": 0,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "data": JSON.stringify({
-      "email": "meow0516@gmail.com",
-      "password": "12345678"
-    }),
-  };
+getAllTasks();
+// var logininfo = {
+//     "url": "https://api-nodejs-todolist.herokuapp.com/user/login",
+//     "method": "POST",
+//     "timeout": 0,
+//     "headers": {
+//       "Content-Type": "application/json"
+//     },
+//     "crossDomain" : true,
+//     "data": JSON.stringify({
+//       "email": "meow0516@gmail.com",
+//       "password": "12345678"
+//     }),
+//   };
 
-$.ajax(logininfo).done(function (response) {
-      token = response.token;
-      console.log(response);
-      // console.log(token);
-      getAllTasks();
+// $.ajax(logininfo).done(function (response) {
+//       token = response.token;
+//       console.log(response);
+//       // console.log(token);
+//       getAllTasks();
 
-});
+// });
             
 // get all task
 function getAllTasks(){
   var getTaskSettings = {
-    "url": "https://api-nodejs-todolist.herokuapp.com/task",
+    // "url": "https://api-nodejs-todolist.herokuapp.com/task",
+    "url": "https://todo-list-api-server.herokuapp.com/api/task",
     "method": "GET",
-    "timeout": 0,
-    "headers": {
+    // "timeout": 0,
+    // "headers": {
       // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGRjY2JlYzZiNTVkYTAwMTc1OTcyMmMiLCJpYXQiOjE1NzQ3NTE2ODh9.GPbsl9FLX4VrsGVErodiXypjuz1us4tfD0jwg2_UrzY",
-      "Authorization": "Bearer "+ token,
-      "Content-Type": "application/json"
-    },
+      // "Authorization": "Bearer "+ token,
+    //   "Content-Type": "application/json"
+    // },
   };
   
   $.ajax(getTaskSettings).done(function (response) {
-    // console.log(response);
-    taskArray = response.data
-    // console.log(taskArray);
+    console.log(response);
+    taskArray = response
     taskArray.forEach(taskList => {
 
       completeStatus = taskList['completed'];
-      taskId = taskList['_id'];
+      taskId = taskList['id'];
       description = taskList['description'];
 
       new_todo_format = $('.none').clone().removeClass('none');
@@ -70,7 +72,8 @@ function getAllTasks(){
 // add task
 function addTask(description){
   var addTaskSettings = {
-    "url": "https://api-nodejs-todolist.herokuapp.com/task",
+    // "url": "https://api-nodejs-todolist.herokuapp.com/task",
+    "url": "https://todo-list-api-server.herokuapp.com/api/task",
     "method": "POST",
     "timeout": 0,
     "headers": {
@@ -85,7 +88,7 @@ function addTask(description){
 
   $.ajax(addTaskSettings).done(function (response) {
     console.log(response);
-    taskId = response.data['_id'];
+    taskId = response['id'];
     completeStatus = response.data['completed'];
     content_arr.push({
       id: taskId,
@@ -98,7 +101,8 @@ function addTask(description){
 // update task
 function updateTask(id, description){
   var updateSettings = {
-      "url": "https://api-nodejs-todolist.herokuapp.com/task/"+id,
+      // "url": "https://api-nodejs-todolist.herokuapp.com/task/"+id,
+      "url": "https://todo-list-api-server.herokuapp.com/api/task/"+id,
       "method": "PUT",
       "timeout": 0,
       "headers": {
@@ -117,10 +121,11 @@ function updateTask(id, description){
 
 }
 
-// complete task
+// complete task postman ver
 function completeTask(id){
   var updateSettings = {
-      "url": "https://api-nodejs-todolist.herokuapp.com/task/"+id,
+      // "url": "https://api-nodejs-todolist.herokuapp.com/task/"+id,
+      "url": "https://todo-list-api-server.herokuapp.com/api/task/"+id,
       "method": "PUT",
       "timeout": 0,
       "headers": {
@@ -139,10 +144,11 @@ function completeTask(id){
 
 }
 
-// cancel complete
+// cancel complete postman ver
 function cancelCompleteTask(id){
   var updateSettings = {
-      "url": "https://api-nodejs-todolist.herokuapp.com/task/"+id,
+      // "url": "https://api-nodejs-todolist.herokuapp.com/task/"+id,
+      "url": "https://todo-list-api-server.herokuapp.com/api/task/"+id,
       "method": "PUT",
       "timeout": 0,
       "headers": {
@@ -164,7 +170,8 @@ function cancelCompleteTask(id){
 // delete task
 function deleteTask(id){
   var deleteSettings = {
-    "url": "https://api-nodejs-todolist.herokuapp.com/task/"+id,
+    // "url": "https://api-nodejs-todolist.herokuapp.com/task/"+id,
+    "url": "https://todo-list-api-server.herokuapp.com/api/task/"+id,
     "method": "DELETE",
     "timeout": 0,
     "headers": {
