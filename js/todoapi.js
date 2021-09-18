@@ -38,33 +38,34 @@ function getAllTasks(){
   };
   
   $.ajax(getTaskSettings).done(function (response) {
-    console.log(response);
-    taskArray = response
+    // console.log(response);
+    taskArray = response;
     taskArray.forEach(taskList => {
-
+      
       completeStatus = taskList['completed'];
-      taskId = taskList['id'];
+      id = taskList['id'];
       description = taskList['description'];
-
+      
       new_todo_format = $('.none').clone().removeClass('none');
       new_todo_format.find('.content').text(description);
-
+      
       content_arr.push({
-      id: taskId,
-      completed: completeStatus,
-      description: description
+        id: id,
+        completed: completeStatus,
+        description: description
       });
-
+      
       if ( completeStatus == false) {
         $('li.none').before(new_todo_format);
       }
       else{        
-          new_todo_format.find('.complete').removeClass('icon-check-empty').addClass('icon-check');
-          $('li.none').before(new_todo_format);        
-        }
-        
-      });
-      $('#todolist').css("background-color","#b8d1ee");
+        new_todo_format.find('.complete').removeClass('icon-check-empty').addClass('icon-check');
+        $('li.none').before(new_todo_format);        
+      }
+      
+    });
+    $('.loading').css("display","none");
+    $('#todolist').css("background-color","#b8d1ee");
   });
   
 }
@@ -88,10 +89,10 @@ function addTask(description){
 
   $.ajax(addTaskSettings).done(function (response) {
     console.log(response);
-    taskId = response['id'];
-    completeStatus = response.data['completed'];
+    id = response['id'];
+    completeStatus = response['completed'];
     content_arr.push({
-      id: taskId,
+      id: id,
       completed: completeStatus,
       description: description
     });
@@ -116,7 +117,7 @@ function updateTask(id, description){
         };
         
   $.ajax(updateSettings).done(function (response) {
-      console.log(response);
+      // console.log(response);
     });
 
 }
@@ -139,7 +140,7 @@ function completeTask(id){
         };
         
   $.ajax(updateSettings).done(function (response) {
-      console.log(response);
+      // console.log(response);
     });
 
 }
@@ -162,7 +163,7 @@ function cancelCompleteTask(id){
         };
         
   $.ajax(updateSettings).done(function (response) {
-      console.log(response);
+      // console.log(response);
     });
 
 }
@@ -182,7 +183,7 @@ function deleteTask(id){
   };
 
   $.ajax(deleteSettings).done(function (response) {
-    console.log(response);
+    // console.log(response);
   });
 }
 

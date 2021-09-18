@@ -2,7 +2,7 @@ let current_content = '';
 let content_arr = [];
 let taskArray = [];
 // let response = null;
-let taskId = null;
+let id = null;
 let completeStatus = null;
 
 $(document).ready(function() {
