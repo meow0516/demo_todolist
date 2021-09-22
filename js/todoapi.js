@@ -11,7 +11,6 @@ getAllTasks();
 //     "crossDomain" : true,
 //     "data": JSON.stringify({
 //       "email": "meow0516@gmail.com",
-//       "password": "12345678"
 //     }),
 //   };
 
@@ -79,7 +78,7 @@ function addTask(description){
     "timeout": 0,
     "headers": {
       // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGRjY2JlYzZiNTVkYTAwMTc1OTcyMmMiLCJpYXQiOjE1NzQ3NTE2ODh9.GPbsl9FLX4VrsGVErodiXypjuz1us4tfD0jwg2_UrzY",
-      "Authorization": "Bearer "+ token,
+      // "Authorization": "Bearer "+ token,
       "Content-Type": "application/json"
     },
     "data": JSON.stringify({
@@ -88,7 +87,7 @@ function addTask(description){
   };
 
   $.ajax(addTaskSettings).done(function (response) {
-    console.log(response);
+    // console.log(response);
     id = response['id'];
     completeStatus = response['completed'];
     content_arr.push({
@@ -108,7 +107,7 @@ function updateTask(id, description){
       "timeout": 0,
       "headers": {
           // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGRjY2JlYzZiNTVkYTAwMTc1OTcyMmMiLCJpYXQiOjE1NzQ3NTE2ODh9.GPbsl9FLX4VrsGVErodiXypjuz1us4tfD0jwg2_UrzY",
-          "Authorization": "Bearer "+ token,
+          // "Authorization": "Bearer "+ token,
           "Content-Type": "application/json"
         },
         "data": JSON.stringify({
@@ -131,7 +130,7 @@ function completeTask(id){
       "timeout": 0,
       "headers": {
           // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGRjY2JlYzZiNTVkYTAwMTc1OTcyMmMiLCJpYXQiOjE1NzQ3NTE2ODh9.GPbsl9FLX4VrsGVErodiXypjuz1us4tfD0jwg2_UrzY",
-          "Authorization": "Bearer "+ token,
+          // "Authorization": "Bearer "+ token,
           "Content-Type": "application/json"
         },
         "data": JSON.stringify({
@@ -154,7 +153,7 @@ function cancelCompleteTask(id){
       "timeout": 0,
       "headers": {
           // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGRjY2JlYzZiNTVkYTAwMTc1OTcyMmMiLCJpYXQiOjE1NzQ3NTE2ODh9.GPbsl9FLX4VrsGVErodiXypjuz1us4tfD0jwg2_UrzY",
-          "Authorization": "Bearer "+ token,
+          // "Authorization": "Bearer "+ token,
           "Content-Type": "application/json"
         },
         "data": JSON.stringify({
@@ -177,7 +176,7 @@ function deleteTask(id){
     "timeout": 0,
     "headers": {
       // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGRjY2JlYzZiNTVkYTAwMTc1OTcyMmMiLCJpYXQiOjE1NzQ3NTE2ODh9.GPbsl9FLX4VrsGVErodiXypjuz1us4tfD0jwg2_UrzY",
-      "Authorization": "Bearer "+ token,
+      // "Authorization": "Bearer "+ token,
       "Content-Type": "application/json",
     },
   };
